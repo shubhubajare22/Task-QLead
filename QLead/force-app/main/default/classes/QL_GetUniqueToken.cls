@@ -4,7 +4,7 @@ public class QL_GetUniqueToken {
     public static List<Response> getUniqueToken(){
         
         List<Response> respList = new List<Response>();
-        Response resp = new Response();
+        Response resp = new Response(); 
         
         try{
             UUID randomUUID = UUID.randomUUID();
