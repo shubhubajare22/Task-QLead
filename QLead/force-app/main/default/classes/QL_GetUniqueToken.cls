@@ -1,5 +1,5 @@
 public class QL_GetUniqueToken {
-    
+    /*
     @InvocableMethod(label='Generate Unique Id')
     public static List<Response> getUniqueToken(){
         
@@ -28,7 +28,7 @@ public class QL_GetUniqueToken {
         @InvocableVariable(label='Error Message')
         public String errorMessage;
     }
-    
+    */
     
     
     public static String getUniqueToken2(){

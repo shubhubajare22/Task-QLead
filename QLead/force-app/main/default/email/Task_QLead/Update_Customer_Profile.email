@@ -1,0 +1,5 @@
+Dear {!Contact.Name},
+
+We're delighted to inform you that your profile has been successfully created! To access and customize your profile, please click on the unique link provided below:
+
+{!$Label.Customer_Site_URL}?CID={!Account.Customer_ID__c}

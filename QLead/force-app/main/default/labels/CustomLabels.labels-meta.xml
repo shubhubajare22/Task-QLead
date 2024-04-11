@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Customer_Site_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Customer Site URL</shortDescription>
+        <value>https://agility-site-1956.scratch.my.site.com/</value>
+    </labels>
+</CustomLabels>
