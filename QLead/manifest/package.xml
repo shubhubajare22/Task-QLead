@@ -5,8 +5,8 @@
   
 
     <types>
-        <members>PersonAccount.PersonAccount</members>
-        <name>RecordType</name>
+        <members>Account_Record_Page</members>
+        <name>FlexiPage</name>
     </types>
 
     
