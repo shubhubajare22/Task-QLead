@@ -22,6 +22,7 @@ public without sharing class  QL_CustomerFlowHandler {
             HTTPRequest rq = new HTTPRequest();
             rq.setMethod('POST');
             rq.setEndpoint(urlToken.Endpoint__c);
+            rq.setHeader('Content-Type', 'application/json');
             rq.setBody(JSON.serialize(reqBody));
             system.debug(JSON.serialize(reqBody));
             

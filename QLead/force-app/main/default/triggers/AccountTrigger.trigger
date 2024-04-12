@@ -2,7 +2,7 @@ trigger AccountTrigger on Account (before insert, after insert) {
     if(trigger.isBefore &&  trigger.isInsert){
         for(Account acc: trigger.new){
             if(acc.IsPersonAccount == true){
-                String token = QL_GetUniqueToken.getUniqueToken2();
+                String token = QL_GetUniqueToken.getUniqueToken();
                 system.debug('token--> ' + token);
                 acc.Customer_ID__c = token ?? null;
             }

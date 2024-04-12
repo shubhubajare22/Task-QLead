@@ -4,7 +4,7 @@ public class QL_GetUniqueToken {
     public static List<Response> getUniqueToken(){
         
         List<Response> respList = new List<Response>();
-        Response resp = new Response(); 
+        Response resp = new Response();
         
         try{
             UUID randomUUID = UUID.randomUUID();
@@ -28,10 +28,10 @@ public class QL_GetUniqueToken {
         @InvocableVariable(label='Error Message')
         public String errorMessage;
     }
+    
     */
     
-    
-    public static String getUniqueToken2(){
+    public static String getUniqueToken(){
   
         try{
             UUID randomUUID = UUID.randomUUID();

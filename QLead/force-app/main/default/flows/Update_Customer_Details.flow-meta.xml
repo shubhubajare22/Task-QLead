@@ -3,13 +3,16 @@
     <actionCalls>
         <name>Get_Account_Details</name>
         <label>Get Account Details</label>
-        <locationX>176</locationX>
-        <locationY>134</locationY>
+        <locationX>527</locationX>
+        <locationY>182</locationY>
         <actionName>QL_CustomerFlowHandler</actionName>
         <actionType>apex</actionType>
         <connector>
             <targetReference>Customer_Details</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error</targetReference>
+        </faultConnector>
         <flowTransactionModel>Automatic</flowTransactionModel>
         <inputParameters>
             <name>uniqueId</name>
@@ -27,13 +30,16 @@
     <actionCalls>
         <name>Update_Account</name>
         <label>Update Account</label>
-        <locationX>176</locationX>
-        <locationY>458</locationY>
+        <locationX>527</locationX>
+        <locationY>506</locationY>
         <actionName>QL_CustomerFlowHandler</actionName>
         <actionType>apex</actionType>
         <connector>
             <targetReference>Confirmation</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error</targetReference>
+        </faultConnector>
         <flowTransactionModel>Automatic</flowTransactionModel>
         <inputParameters>
             <name>acc</name>
@@ -49,8 +55,8 @@
     <assignments>
         <name>Update_Account_Fields</name>
         <label>Update Account Fields</label>
-        <locationX>176</locationX>
-        <locationY>350</locationY>
+        <locationX>527</locationX>
+        <locationY>398</locationY>
         <assignmentItems>
             <assignToReference>Account.Date_of_Birth__c</assignToReference>
             <operator>Assign</operator>
@@ -111,7 +117,7 @@
     <processMetadataValues>
         <name>CanvasMode</name>
         <value>
-            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
         </value>
     </processMetadataValues>
     <processMetadataValues>
@@ -124,8 +130,8 @@
     <screens>
         <name>Confirmation</name>
         <label>Confirmation</label>
-        <locationX>176</locationX>
-        <locationY>566</locationY>
+        <locationX>527</locationX>
+        <locationY>614</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -140,8 +146,8 @@
     <screens>
         <name>Customer_Details</name>
         <label>Customer Details</label>
-        <locationX>176</locationX>
-        <locationY>242</locationY>
+        <locationX>527</locationX>
+        <locationY>290</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -212,7 +218,7 @@
                     <inputParameters>
                         <name>pattern</name>
                         <value>
-                            <stringValue>^\d{10}$</stringValue>
+                            <stringValue>^\(?\d{3}\)?[- ]?\d{3}[- ]?\d{4}$</stringValue>
                         </value>
                     </inputParameters>
                     <inputParameters>
@@ -230,6 +236,10 @@
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <validationRule>
+                        <errorMessage>&lt;p&gt;Please enter valid phone number&lt;/p&gt;</errorMessage>
+                        <formulaExpression>REGEX({!phone.value},  &quot;^\\(?\\d{3}\\)?[- ]?\\d{3}[- ]?\\d{4}$&quot;)</formulaExpression>
+                    </validationRule>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -263,6 +273,10 @@
                     <fieldType>InputField</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
+                    <validationRule>
+                        <errorMessage>&lt;p&gt;&lt;span style=&quot;color: rgb(234, 0, 3); background-color: rgb(255, 255, 255);&quot;&gt;Please select your Date of Birth!&lt;/span&gt;&lt;/p&gt;</errorMessage>
+                        <formulaExpression>NOT(ISNULL({!Date_of_Birth}))</formulaExpression>
+                    </validationRule>
                 </fields>
                 <fields>
                     <name>TShirt_Size</name>
@@ -314,8 +328,8 @@
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
                     <validationRule>
-                        <errorMessage>&lt;p&gt;&lt;span style=&quot;color: rgb(234, 0, 3);&quot;&gt;Please select your shoe size!&lt;/span&gt;&lt;/p&gt;</errorMessage>
-                        <formulaExpression>ISNULL({!Shoe_Size.value})</formulaExpression>
+                        <errorMessage>&lt;p&gt;&lt;span style=&quot;color: rgb(194, 57, 52);&quot;&gt;Please select your shoe size!&lt;/span&gt;&lt;/p&gt;</errorMessage>
+                        <formulaExpression>NOT({!Shoe_Size.value} &lt; 6)</formulaExpression>
                     </validationRule>
                 </fields>
                 <inputParameters>
@@ -333,14 +347,30 @@
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
+    <screens>
+        <name>Error</name>
+        <label>Error</label>
+        <locationX>755</locationX>
+        <locationY>357</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>error_message</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 20px; color: rgb(0, 132, 255);&quot;&gt;Something went wrong, please again after some time !&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
     <start>
-        <locationX>50</locationX>
-        <locationY>0</locationY>
+        <locationX>401</locationX>
+        <locationY>48</locationY>
         <connector>
             <targetReference>Get_Account_Details</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>Account</name>
         <dataType>SObject</dataType>

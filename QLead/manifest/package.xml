@@ -5,8 +5,8 @@
   
 
     <types>
-        <members>Customer Details Profile</members>
-        <name>Profile</name>
+        <members>PersonAccount.PersonAccount</members>
+        <name>RecordType</name>
     </types>
 
     
