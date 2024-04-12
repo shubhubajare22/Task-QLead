@@ -4,7 +4,7 @@
         <name>Get_Account_Details</name>
         <label>Get Account Details</label>
         <locationX>527</locationX>
-        <locationY>182</locationY>
+        <locationY>350</locationY>
         <actionName>QL_CustomerFlowHandler</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -31,7 +31,7 @@
         <name>Update_Account</name>
         <label>Update Account</label>
         <locationX>527</locationX>
-        <locationY>506</locationY>
+        <locationY>674</locationY>
         <actionName>QL_CustomerFlowHandler</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -56,7 +56,7 @@
         <name>Update_Account_Fields</name>
         <label>Update Account Fields</label>
         <locationX>527</locationX>
-        <locationY>398</locationY>
+        <locationY>566</locationY>
         <assignmentItems>
             <assignToReference>Account.Date_of_Birth__c</assignToReference>
             <operator>Assign</operator>
@@ -96,6 +96,31 @@
             <targetReference>Update_Account</targetReference>
         </connector>
     </assignments>
+    <decisions>
+        <name>Check_Customer_ID</name>
+        <label>Check Customer ID</label>
+        <locationX>514</locationX>
+        <locationY>184</locationY>
+        <defaultConnector>
+            <targetReference>Error</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Present</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>CustomerID</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Account_Details</targetReference>
+            </connector>
+            <label>Present</label>
+        </rules>
+    </decisions>
     <dynamicChoiceSets>
         <name>T_Shirt_Size</name>
         <dataType>Picklist</dataType>
@@ -131,7 +156,7 @@
         <name>Confirmation</name>
         <label>Confirmation</label>
         <locationX>527</locationX>
-        <locationY>614</locationY>
+        <locationY>782</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -147,7 +172,7 @@
         <name>Customer_Details</name>
         <label>Customer Details</label>
         <locationX>527</locationX>
-        <locationY>290</locationY>
+        <locationY>458</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -351,7 +376,7 @@
         <name>Error</name>
         <label>Error</label>
         <locationX>755</locationX>
-        <locationY>357</locationY>
+        <locationY>525</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -364,10 +389,10 @@
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>401</locationX>
-        <locationY>48</locationY>
+        <locationX>396</locationX>
+        <locationY>50</locationY>
         <connector>
-            <targetReference>Get_Account_Details</targetReference>
+            <targetReference>Check_Customer_ID</targetReference>
         </connector>
     </start>
     <status>Active</status>
